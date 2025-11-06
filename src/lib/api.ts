@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_URL = import.meta.env.VITE_API_URL || 'http://0.0.0.0:3000';
 
 export interface Token {
   address: string;
@@ -66,6 +66,13 @@ class ApiClient {
     return this.request('/auth/link-telegram', {
       method: 'POST',
       body: JSON.stringify({ username }),
+    });
+  }
+
+  async linkWallet(telegram: string, pubkey: string): Promise<void> {
+    return this.request('/account/link-wallet', {
+      method: 'POST',
+      body: JSON.stringify({ telegram, pubkey }),
     });
   }
 

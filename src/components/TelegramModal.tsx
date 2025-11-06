@@ -5,35 +5,60 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { api } from '@/lib/api';
 import { useAuth } from '@/contexts/AuthContext';
+import { useAccount } from 'wagmi';
 import { toast } from '@/hooks/use-toast';
 
 export function TelegramModal() {
   const { needsTelegram, setNeedsTelegram } = useAuth();
+  const { address } = useAccount();
   const [username, setUsername] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!username.startsWith('@')) {
+    if (!address) {
       toast({
-        title: 'Username inválido',
-        description: 'Username do Telegram deve começar com @',
+        title: 'Carteira não conectada',
+        description: 'Por favor, conecte sua carteira primeiro',
         variant: 'destructive',
       });
       return;
     }
 
-    // Simulação - não faz chamada real à API
-    setIsLoading(true);
-    setTimeout(() => {
+    // Remove o @ se o usuário incluir
+    const cleanUsername = username.startsWith('@') ? username.slice(1) : username;
+    
+    if (!cleanUsername) {
       toast({
-        title: 'Sucesso! (Mock)',
-        description: 'Telegram vinculado (simulação)',
+        title: 'Username inválido',
+        description: 'Por favor, insira seu username do Telegram',
+        variant: 'destructive',
       });
+      return;
+    }
+
+    setIsLoading(true);
+    
+    try {
+      await api.linkWallet(cleanUsername, address);
+      
+      toast({
+        title: 'Sucesso!',
+        description: 'Telegram vinculado com sucesso',
+      });
+      
       setNeedsTelegram(false);
+      setUsername('');
+    } catch (error) {
+      toast({
+        title: 'Erro ao vincular',
+        description: error instanceof Error ? error.message : 'Erro desconhecido',
+        variant: 'destructive',
+      });
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   return (
