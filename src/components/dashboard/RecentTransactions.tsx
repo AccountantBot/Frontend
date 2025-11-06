@@ -67,7 +67,7 @@ export function RecentTransactions() {
 
   return (
     <Card className="glass-card">
-      <CardHeader>
+      <CardHeader className="border-b border-border/60">
         <CardTitle>Transações recentes</CardTitle>
         <CardDescription>
           Acompanhe rapidamente as últimas interações registradas pelo AccountantBot.

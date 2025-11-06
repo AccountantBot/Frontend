@@ -78,8 +78,8 @@ export default function History() {
           <p className="text-muted-foreground">Veja todas as suas divisões e pagamentos anteriores</p>
         </div>
 
-        <Card className="glass-card">
-          <CardHeader>
+        <Card className="glass-card border border-border/60">
+          <CardHeader className="border-b border-border/60">
             <CardTitle>Todas as Transações</CardTitle>
           </CardHeader>
           <CardContent>

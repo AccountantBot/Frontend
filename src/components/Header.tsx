@@ -3,6 +3,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { LogOut, Wallet } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { ModeToggle } from '@/components/ModeToggle';
 
 export function Header() {
   const { isAuthenticated, logout } = useAuth();
@@ -28,6 +29,7 @@ export function Header() {
           </button>
 
           <div className="flex items-center gap-3">
+            <ModeToggle />
             <ConnectButton />
             
             {isAuthenticated && (

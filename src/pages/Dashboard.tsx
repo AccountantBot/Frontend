@@ -30,7 +30,7 @@ export default function Dashboard() {
 
       <div className="container mx-auto px-4 py-8 space-y-6">
         <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="glass-card p-1 grid grid-cols-3 gap-2 w-full md:w-auto">
+          <TabsList className="w-full justify-between gap-1 rounded-xl border border-border/60 bg-background/90 p-1 shadow-sm sm:w-auto sm:justify-start">
             <TabsTrigger value="overview" className="gap-2">
               <MessageCircle className="w-4 h-4" />
               Visão geral
@@ -46,7 +46,7 @@ export default function Dashboard() {
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">
-            <Card className="glass-card">
+            <Card className="glass-card border border-border/60">
               <CardHeader>
                 <CardTitle>Bem-vindo ao painel do AccountantBot</CardTitle>
                 <CardDescription>
@@ -56,21 +56,21 @@ export default function Dashboard() {
               <CardContent>
                 <div className="grid gap-4 md:grid-cols-3 text-sm text-muted-foreground">
                   <div className="flex items-start gap-3">
-                    <MessageCircle className="w-5 h-5 text-primary mt-0.5" />
+                    <MessageCircle className="w-5 h-5 text-muted-foreground mt-0.5" />
                     <div>
                       <p className="font-medium text-foreground">Conecte o Telegram</p>
                       <p>Receba alertas e instruções do bot sempre que uma nova divisão for criada.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <ShieldCheck className="w-5 h-5 text-primary mt-0.5" />
+                    <ShieldCheck className="w-5 h-5 text-muted-foreground mt-0.5" />
                     <div>
                       <p className="font-medium text-foreground">Autorize o contrato</p>
                       <p>Defina limites seguros para que o AccountantBot execute pagamentos em seu nome.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <Clock className="w-5 h-5 text-primary mt-0.5" />
+                    <Clock className="w-5 h-5 text-muted-foreground mt-0.5" />
                     <div>
                       <p className="font-medium text-foreground">Monitore o histórico</p>
                       <p>Acompanhe todas as transações e assinaturas registradas on-chain.</p>
@@ -90,7 +90,7 @@ export default function Dashboard() {
                   <p className="text-sm text-muted-foreground">
                     O AccountantBot confirma sua identidade e envia notificações pelo Telegram antes de concluir qualquer movimentação.
                   </p>
-                  <Button size="lg" className="gradient-primary" onClick={() => setNeedsTelegram(true)}>
+                  <Button size="lg" variant="secondary" className="w-full sm:w-auto" onClick={() => setNeedsTelegram(true)}>
                     Conectar Telegram
                   </Button>
                   <p className="text-xs text-muted-foreground">
@@ -111,7 +111,7 @@ export default function Dashboard() {
                     <li>Receber solicitações e aprovar pagamentos com um toque.</li>
                     <li>Consultar saldos, status e próximos passos com linguagem natural.</li>
                   </ul>
-                  <Button variant="outline" size="sm" asChild>
+                  <Button variant="ghost" size="sm" asChild>
                     <a href="https://t.me/AccountantBot" target="_blank" rel="noopener noreferrer">
                       Iniciar conversa no Telegram
                       <ArrowRight className="w-4 h-4 ml-2" />
@@ -123,7 +123,7 @@ export default function Dashboard() {
           </TabsContent>
 
           <TabsContent value="permissions" className="space-y-6">
-            <Card className="glass-card">
+            <Card className="glass-card border border-border/60">
               <CardHeader>
                 <CardTitle>Gerenciar autorizações</CardTitle>
                 <CardDescription>
@@ -136,7 +136,7 @@ export default function Dashboard() {
 
           <TabsContent value="history" className="space-y-6">
             <RecentTransactions />
-            <Card className="glass-card">
+            <Card className="glass-card border border-border/60">
               <CardContent className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div className="text-sm text-muted-foreground">
                   Precisa de mais detalhes? Acesse o histórico completo com todas as movimentações gerenciadas pelo bot.
